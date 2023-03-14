@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div>Друзья: ${hero.friends}</div>
         <div>Суперсила: ${hero.superpowers}</div>
         <img src="${hero.url}" class="hero-img"></img>
+        <button class="btn" id="btn${index}">Читать подробнее</button>
         <div class="rating" id="${index}">
         <img value="0" src='/assets/images/blank-star.svg'></img>
         <img value="1" src='/assets/images/blank-star.svg'></img>
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+    setBtnEvents();
     getStoredRatings();
 });
 
@@ -63,3 +65,35 @@ function getStoredRatings() {
         addStarRating(valueItem);
     }
 }
+
+function setBtnEvents() {
+    const btnArray = document.getElementsByClassName("btn");
+    const parent = document.getElementById("text-container");
+
+    const buttons = [...btnArray];
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            let content = `<p>${
+                heroArray[btn.getAttribute("id").slice(3)].info
+            }</p>`;
+            console.log(btn.getAttribute("id").slice(3));
+            parent.innerHTML = "";
+            parent.innerHTML = content;
+            openModal();
+        });
+    });
+}
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+
+const closeModalBtn = document.querySelector(".btn-close");
+function openModal() {
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+}
+function closeModal() {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+}
+closeModalBtn.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
