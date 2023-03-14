@@ -1,0 +1,39 @@
+#card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 5px double black;
+  padding: 0.5rem;
+}
+.card div {
+  padding: 0.5rem 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.main {
+  font-family: "Bangers";
+  padding: 1.5rem;
+}
+
+@font-face {
+  font-family: "Bangers";
+  src: url(/assets/fonts/v_BlambotCasual_v1.0.ttf);
+}
+.rating {
+  padding: 1rem !important;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(10px, 1fr));
+  margin-top: auto;
+}
+
+.hero-img {
+  margin-top: auto;
+}
